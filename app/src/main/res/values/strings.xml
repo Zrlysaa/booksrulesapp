@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Hitung Dendamu</string>
+    <string name="bmi_intro">Cobalah sekarang!</string>
+    <string name="berat_badan">Berat badan</string>
+    <string name="tinggi_badan">Tinggi badan</string>
+    <string name="nama">nama</string>
+    <string name="NIM">NIM</string>
+    <string name="terlambat">terlambat</string>
+    <string name="pria">Pria</string>
+    <string name="wanita">Wanita</string>
+    <string name="hitung">Hitung</string>
+    <string name="bmi_x">BMI: %1$.2f</string>
+    <string name="kurus">Kurus</string>
+    <string name="ideal">Ideal</string>
+    <string name="gemuk">Gemuk</string>
+    <string name="input_invalid">Tidak boleh kosong.</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="bagikan_template">Berat badan: %1$s kg\nTinggi badan: %2$s cm\nJenis kelamin: %3$s \n\nBMI: %4$.2f\n%5$s</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="copyright">Hitung BMI merupakan sebuah aplikasi Android menghitung body mass index (BMI) sehingga seseorang dapat  mengetahui apakah berat badannya ideal, gemuk atau kurus.\n\nAplikasi ini dibuat untuk kelas Mobpro 1.\n\nCopyright © 2021 - 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved.</string>
+    <string name="kembali">Kembali</string>
+    <string name="aturan">1. Peminjaman buku wajib menggunakan KTM/Karpeg/kartu identitas yang berlaku dan tidak diperkenankan menggunakan KTM/Karpeg/kartu identitas anggota lain
+ \n\n2. Jumlah peminjaman :
+ \nMahasiswa: Maksimal 2 (dua) judul buku yang berbeda
+ \nDosen/Pegawai : Maksimal 4 (empat) judul buku yang berbeda
+ \n\n3. Waktu peminjaman buku
+ \nMahasiswa : 7 hari kerja
+ \nDosen/Pegawai : 14 hari kerja
+ \n\n4. Peminjam memastikan buku yang akan dipinjam telah diproses petugas dan telah diberi cap tanggal pengembalian dan menerima SMS/e-mail notifikasi peminjaman, apabila peminjam belum menerima notifikasi peminjaman harus segera mengup-date data nomor telepon selular dan e-mail
+ \n\n5. Peminjam wajib memeriksa kembali buku yang akan dipinjam, kerusakan (sobek, basah, stabilo, coretan, kotor, terbakar) yang terjadi pada masa peminjaman menjadi tanggungjawab peminjam dan akan dikenakan sanksi
+ \n\n6. Denda sebagai punishment tergantung kategori buku</string>
+</resources>

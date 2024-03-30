@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetDropDown">
+    <value>
+      <entry key="AboutScreenPreview (1)">
+        <State />
+      </entry>
+      <entry key="OptionScreenPreview">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\ASUS Vivobook\.android\avd\Pixel_3a_API_28.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-03-29T18:28:40.022083700Z" />
+        </State>
+      </entry>
+      <entry key="RulesScreenPreview">
+        <State />
+      </entry>
+      <entry key="ScreenPreview">
+        <State />
+      </entry>
+      <entry key="SplahScreenPreview">
+        <State />
+      </entry>
+      <entry key="app">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\ASUS Vivobook\.android\avd\Pixel_3a_API_28_2.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-03-29T03:28:37.706800600Z" />
+        </State>
+      </entry>
+    </value>
+  </component>
+</project>
