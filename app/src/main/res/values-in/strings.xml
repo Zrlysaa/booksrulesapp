@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="true">Hitung Dendamu</string>
+    <string name="app_name">Hitung Dendamu</string>
     <string name="bmi_intro">Cobalah sekarang!</string>
     <string name="berat_badan">Berat badan</string>
     <string name="tinggi_badan">Tinggi badan</string>

@@ -46,36 +46,35 @@ fun SplashScreen (navController: NavHostController){
         Text(
             text = "Cari Tahu kondisi Bukumu? ",
             style = MaterialTheme.typography.headlineLarge,
-            fontSize = 20.sp,
+            fontSize = 22.sp,
             fontWeight = FontWeight(800),
             color = Color.White,
             modifier = Modifier
-                .padding(top = 430.dp)
-                .padding(horizontal = 70.dp),
-            textAlign = TextAlign.Center
+                .padding(top = 150.dp)
+                .padding(horizontal = 20.dp)
+                .align(Alignment.Center),
         )
         Text(
             text = "Perkirakan dan kelola  keterlambatanmu ",
             style = MaterialTheme.typography.headlineLarge,
-            fontSize = 16.sp,
+            fontSize = 18.sp,
             color = Color.White,
             modifier = Modifier
-                .padding(top = 470.dp)
-                .padding(horizontal = 50.dp),
-            textAlign = TextAlign.Center
+                .padding(top = 250.dp)
+                .padding(horizontal = 20.dp)
+                .align(Alignment.Center),
         )
         Button(
-            onClick = {  navController.navigate(Screen.Option.route) },
+            onClick = { navController.navigate("optionScreen") },
             modifier = Modifier
                 .fillMaxWidth(0.5f)
-                .padding(top = 500.dp)
+                .padding(top = 450.dp)
                 .align(Alignment.Center),
-            contentPadding = PaddingValues(20.dp),
+            contentPadding = PaddingValues(16.dp),
             colors = ButtonDefaults.buttonColors(
                 Color.White,
                 contentColor = Color.Black
             )
-
         ) {
             Text(text = "Get Started")
         }

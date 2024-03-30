@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="AboutScreenPreview (1)">
+      <entry key="AboutScreenPreview">
         <State />
       </entry>
       <entry key="OptionScreenPreview">
@@ -21,13 +21,13 @@
           <timeTargetWasSelectedWithDropDown value="2024-03-29T18:28:40.022083700Z" />
         </State>
       </entry>
-      <entry key="RulesScreenPreview">
-        <State />
-      </entry>
       <entry key="ScreenPreview">
         <State />
       </entry>
       <entry key="SplahScreenPreview">
+        <State />
+      </entry>
+      <entry key="SplashScreenPreview">
         <State />
       </entry>
       <entry key="app">
