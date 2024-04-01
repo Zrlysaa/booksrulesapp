@@ -47,7 +47,7 @@ fun AboutScreen(navController: NavHostController) {
                 },
                 title = { Text(text = stringResource(id = R.string.tentang_aplikasi)) },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
+                    containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 )
             )

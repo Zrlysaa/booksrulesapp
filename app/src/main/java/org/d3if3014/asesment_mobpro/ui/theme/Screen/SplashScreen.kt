@@ -55,7 +55,7 @@ fun SplashScreen (navController: NavHostController){
                 .align(Alignment.Center),
         )
         Text(
-            text = "Perkirakan dan kelola  keterlambatanmu ",
+            text = "Perkirakan dan kelola keterlambatanmu ",
             style = MaterialTheme.typography.headlineLarge,
             fontSize = 18.sp,
             color = Color.White,

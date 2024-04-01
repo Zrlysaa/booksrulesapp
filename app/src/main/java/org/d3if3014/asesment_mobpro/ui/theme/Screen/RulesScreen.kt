@@ -52,7 +52,7 @@ fun RulesScreen(navController: NavHostController) {
                 },
                 title = { Text(text = stringResource(id = R.string.page_name)) },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surface,
+                    containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 ),
 

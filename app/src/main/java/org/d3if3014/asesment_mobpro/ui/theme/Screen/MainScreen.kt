@@ -4,18 +4,25 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Button
@@ -33,12 +40,14 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
@@ -58,111 +67,157 @@ fun MainScreen(navController: NavController){
     Scaffold(
         topBar= {
             TopAppBar(
-                title = { Text(text = stringResource(id = R.string.app_name)) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack()}) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = stringResource(R.string.kembali),
+                            tint = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                },
+                title = {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Spacer(modifier = Modifier.width(20.dp))
+                        Text(text = stringResource(id = R.string.app_name))
+                    }
+                },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.primary,
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimary,
                 ),
                 actions = {
                     IconButton(onClick = {
                         navController.navigate(Screen.About.route)
-                    }
-                    ){
+                    }) {
                         Icon(
                             imageVector = Icons.Outlined.Info,
                             contentDescription = stringResource(R.string.tentang_aplikasi),
-                            tint = MaterialTheme.colorScheme.primary
+                            tint = MaterialTheme.colorScheme.onPrimary
                         )
-
                     }
-
                 }
             )
         }
-    ) {
-            padding -> ScreenContent(Modifier.padding(padding))
+    ) { padding ->
+        ScreenContent(Modifier.padding(padding))
     }
 }
 
 
-@SuppressLint("SuspiciousIndentation")
 @Composable
 fun ScreenContent(modifier: Modifier){
-    var nama by rememberSaveable { mutableStateOf("") }
-    var namaError by rememberSaveable { mutableStateOf(false) }
-
-    var NIM by rememberSaveable { mutableStateOf("") }
-    var NIMError by rememberSaveable { mutableStateOf(false) }
-
-    var berat by rememberSaveable { mutableStateOf("") }
-    var beratError by rememberSaveable { mutableStateOf(false) }
-
-    var tinggi by rememberSaveable { mutableStateOf("") }
-    var tinggiError by rememberSaveable { mutableStateOf(false) }
-
-    var terlambat by rememberSaveable { mutableStateOf("") }
-    var terlambatError by rememberSaveable { mutableStateOf(false) }
+    var nama by remember { mutableStateOf("") }
+    var namaError by remember { mutableStateOf(false) }
+    var nim by remember { mutableStateOf("") }
+    var nimError by remember { mutableStateOf(false) }
+    var tanggal_pinjam by remember { mutableStateOf("") }
+    var tanggal_pinjamError by remember { mutableStateOf(false) }
+    var tanggal_kembali by remember { mutableStateOf("") }
+    var tanggal_kembaliError by remember { mutableStateOf(false) }
+    var terlambat by remember { mutableStateOf("") }
+    var terlambatError by remember { mutableStateOf(false) }
+    var denda by remember { mutableStateOf(0f) }
+    var hasil by remember { mutableStateOf(0) }
 
     var radioOptions = listOf(
-        stringResource(id = R.string.pria),
-        stringResource(id = R.string.wanita)
+        stringResource(id = R.string.karyawan),
+        stringResource(id = R.string.mahasiswa)
     )
-    var gender by rememberSaveable { mutableStateOf(radioOptions[0]) }
-    var bmi by rememberSaveable { mutableStateOf(0f) }
-    var kategori by rememberSaveable { mutableStateOf(0) }
-    val context = LocalContext.current
+    var status by remember { mutableStateOf(radioOptions[0]) }
     Column (
         modifier = modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = stringResource(id = R.string.bmi_intro),
+        Text(text = stringResource(id = R.string.tentang_aplikasi),
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.fillMaxWidth()
         )
-        OutlinedTextField(
-            value = berat,
-            onValueChange = { berat = it },
-            label = { Text(text = stringResource(R.string.berat_badan))},
-            isError = beratError,
-            trailingIcon = { IconPicker(beratError,"kg" )},
-            supportingText = { ErrorHint(beratError)},
+        OutlinedTextField(value = nama, onValueChange = {nama = it},
+            label = { Text(text = stringResource(id = R.string.nama)) },
+            isError = namaError,
+            trailingIcon = { IconPicker(namaError, "")},
+            supportingText = { ErrorHint(namaError)},
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Next
+            ),
+            modifier = Modifier.fillMaxWidth()
+
+        )
+
+        OutlinedTextField(value = nim, onValueChange = {nim = it},
+            label = { Text(text = stringResource(id = R.string.nim)) },
+            isError = nimError,
+            trailingIcon = { IconPicker(nimError, "")},
+            supportingText = { ErrorHint(nimError)},
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
                 imeAction = ImeAction.Next
             ),
             modifier = Modifier.fillMaxWidth()
+
         )
-        OutlinedTextField(
-            value = tinggi,
-            onValueChange = { tinggi = it },
-            label = { Text(text = stringResource(R.string.tinggi_badan))},
-            isError = tinggiError,
-            trailingIcon = { IconPicker( tinggiError, "cm" )},
-            supportingText = { ErrorHint(tinggiError)},
+
+        OutlinedTextField(value = tanggal_pinjam, onValueChange = {tanggal_pinjam = it},
+            label = { Text(text = stringResource(id = R.string.tanggal_pinjam)) },
+            isError = tanggal_pinjamError,
+            trailingIcon = { IconPicker(tanggal_pinjamError, "")},
+            supportingText = { ErrorHint(tanggal_pinjamError)},
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Done
+                imeAction = ImeAction.Next
             ),
             modifier = Modifier.fillMaxWidth()
+
         )
+
+        OutlinedTextField(value = tanggal_kembali, onValueChange = {tanggal_kembali = it},
+            label = { Text(text = stringResource(id = R.string.tanggal_kembali)) },
+            isError = tanggal_kembaliError,
+            trailingIcon = { IconPicker(tanggal_kembaliError, "")},
+            supportingText = { ErrorHint(tanggal_kembaliError)},
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Next
+            ),
+            modifier = Modifier.fillMaxWidth()
+
+        )
+
+        OutlinedTextField(value = terlambat, onValueChange = {terlambat = it},
+            label = { Text(text = stringResource(id = R.string.terlambat)) },
+            isError = terlambatError,
+            trailingIcon = { IconPicker(terlambatError, "hari")},
+            supportingText = { ErrorHint(terlambatError)},
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Next
+            ),
+            modifier = Modifier.fillMaxWidth()
+
+        )
+
         Row (
             modifier = Modifier
                 .padding(top = 6.dp)
                 .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
         ){
             radioOptions.forEach { text ->
-                GenderOption(
-                    label = text,
-                    isSelected = gender == text,
+                StatusOption(label = text, isSelected = status == text,
                     modifier = Modifier
                         .selectable(
-                            selected = gender == text,
-                            onClick = { gender = text },
+                            selected = status == text,
+                            onClick = { status = text },
                             role = Role.RadioButton
                         )
                         .weight(1f)
@@ -170,96 +225,90 @@ fun ScreenContent(modifier: Modifier){
                 )
             }
         }
-        Button(
-            onClick = {
-                beratError = (berat == "" || berat == "0")
-                tinggiError = (tinggi == "" || tinggi == "0")
-                if (beratError || tinggiError) return@Button
-                bmi = hitungBmi(berat.toFloat(), tinggi.toFloat())
-                kategori = getKategori(bmi, gender == radioOptions[0])
-            },
+        Button(onClick = {
+            namaError = (nama == "" || nama == "0")
+            nimError = (nim == "" || nim == "0")
+            tanggal_pinjamError = (tanggal_pinjam =="" || tanggal_pinjam == "0")
+            tanggal_kembaliError = (tanggal_kembali == "" || tanggal_kembali == "0")
+            terlambatError = (terlambat == "" || terlambat == "0")
+
+            if (namaError || nimError || tanggal_pinjamError || tanggal_kembaliError || terlambatError)
+                return@Button
+            val denda = hitungDenda(tanggal_pinjam.toInt(), tanggal_kembali.toInt(), terlambat.toInt())
+            val hasil = getHasil(tanggal_pinjam.toInt(), tanggal_kembali.toInt())
+
+        },
             modifier = Modifier.padding(top = 8.dp),
             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
         ) {
-            Text(text = stringResource(R.string.hitung))
+            Text(text = stringResource(id = R.string.hitung))
         }
 
-        if (bmi != 0f) {
+        if (denda != 0f){
             Divider(
                 modifier = Modifier.padding(vertical = 8.dp),
                 thickness = 1.dp
             )
-            Text(text = stringResource(R.string.bmi_x,bmi),
+            Text(
+                text = stringResource(id = R.string.Status),
                 style = MaterialTheme.typography.titleLarge
             )
-            Text(text = stringResource(kategori).uppercase(),
+            Text(text = stringResource(hasil). uppercase(),
                 style = MaterialTheme.typography.headlineLarge
             )
-            Button(onClick = {
-                shareData(
-                    context = context,
-                    message = context.getString(R.string.bagikan_template,
-                        berat, tinggi, gender, bmi,
-                        context.getString(kategori).uppercase())
-                )
-            },
-                modifier = Modifier.padding(top = 8.dp),
-                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
-            ) {
-                Text(text = stringResource(R.string.bagikan))
-            }
         }
-
     }
 }
 
 @Composable
-fun GenderOption(label: String, isSelected:Boolean, modifier: Modifier){
+fun StatusOption(label: String, isSelected: Boolean, modifier: Modifier){
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         RadioButton(selected = isSelected, onClick = null)
-        Text(
-            text = label,
+        Text(text = label,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(start = 8.dp)
+            modifier = Modifier.padding(start= 8.dp)
         )
     }
 }
 
 @Composable
 fun IconPicker(isError: Boolean, unit: String){
-    if (isError){
-        Icon(imageVector = Icons.Filled.Warning, contentDescription = null)
+    if (isError) {
+        Icon(imageVector =Icons.Filled.Warning, contentDescription = null)
     } else {
         Text(text = unit)
     }
 }
 
-@Composable
-fun ErrorHint(isError: Boolean) {
-    if (isError) {
-        Text(text = stringResource(R.string.input_invalid))
+private fun hitungDenda(tanggal_pinjam: Int, tanggal_kembali: Int, terlambat: Int): Int {
+    val dendaPerHari = 2000
+    val hariTerlambat = tanggal_kembali - tanggal_pinjam - 7
+
+    return if (hariTerlambat > 0) {
+        hariTerlambat * dendaPerHari * terlambat
+    } else {
+        0
     }
 }
-private fun hitungBmi(berat: Float, tinggi:Float): Float {
-    return berat / (tinggi / 100).pow(2)
+
+@Composable
+fun ErrorHint(isError: Boolean){
+    if (isError) {
+        Text(text = stringResource(id = R.string.input_invalid))
+    }
 }
 
-private fun getKategori(bmi: Float, isMale: Boolean): Int {
-    return if (isMale) {
-        when {
-            bmi < 20.5 -> R.string.kurus
-            bmi >= 27.0 -> R.string.gemuk
-            else -> R.string.ideal
-        }
+private fun getHasil(tanggal_pinjam: Int, tanggal_kembali: Int): String {
+    val batasHari = 7
+    val hariPeminjaman = tanggal_kembali - tanggal_pinjam
+
+    return if (hariPeminjaman <= batasHari) {
+        "Aman"
     } else {
-        when {
-            bmi < 18.5 -> R.string.kurus
-            bmi >= 25.0 -> R.string.gemuk
-            else -> R.string.ideal
-        }
+        "Denda"
     }
 }
 
