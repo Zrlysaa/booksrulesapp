@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
@@ -39,15 +37,14 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
@@ -59,7 +56,6 @@ import androidx.navigation.compose.rememberNavController
 import org.d3if3014.asesment_mobpro.R
 import org.d3if3014.asesment_mobpro.navigation.Screen
 import org.d3if3014.asesment_mobpro.ui.theme.Asesment_mobproTheme
-import kotlin.math.pow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -79,7 +75,7 @@ fun MainScreen(navController: NavController){
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Spacer(modifier = Modifier.width(20.dp))
-                        Text(text = stringResource(id = R.string.app_name))
+                        Text(text = stringResource(id = R.string.page_hitung))
                     }
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
@@ -92,7 +88,7 @@ fun MainScreen(navController: NavController){
                     }) {
                         Icon(
                             imageVector = Icons.Outlined.Info,
-                            contentDescription = stringResource(R.string.tentang_aplikasi),
+                            contentDescription = stringResource(R.string.app_name),
                             tint = MaterialTheme.colorScheme.onPrimary
                         )
                     }
@@ -104,27 +100,27 @@ fun MainScreen(navController: NavController){
     }
 }
 
-
+@SuppressLint("StringFormatInvalid", "StringFormatMatches")
 @Composable
 fun ScreenContent(modifier: Modifier){
     var nama by remember { mutableStateOf("") }
     var namaError by remember { mutableStateOf(false) }
     var nim by remember { mutableStateOf("") }
     var nimError by remember { mutableStateOf(false) }
-    var tanggal_pinjam by remember { mutableStateOf("") }
-    var tanggal_pinjamError by remember { mutableStateOf(false) }
-    var tanggal_kembali by remember { mutableStateOf("") }
-    var tanggal_kembaliError by remember { mutableStateOf(false) }
     var terlambat by remember { mutableStateOf("") }
     var terlambatError by remember { mutableStateOf(false) }
-    var denda by remember { mutableStateOf(0f) }
-    var hasil by remember { mutableStateOf(0) }
+    var denda by remember { mutableFloatStateOf(0f) }
 
-    var radioOptions = listOf(
+    val radioOptions = listOf(
         stringResource(id = R.string.karyawan),
         stringResource(id = R.string.mahasiswa)
     )
-    var status by remember { mutableStateOf(radioOptions[0]) }
+    var selectedStatus by remember { mutableStateOf(radioOptions[0]) }
+
+    // Definisi variabel kategori di luar blok Button
+    var kategori by remember { mutableStateOf("") }
+
+    val context = LocalContext.current
     Column (
         modifier = modifier
             .fillMaxSize()
@@ -133,7 +129,7 @@ fun ScreenContent(modifier: Modifier){
         verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = stringResource(id = R.string.tentang_aplikasi),
+        Text(text = stringResource(id = R.string.plash),
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.fillMaxWidth()
         )
@@ -165,34 +161,6 @@ fun ScreenContent(modifier: Modifier){
 
         )
 
-        OutlinedTextField(value = tanggal_pinjam, onValueChange = {tanggal_pinjam = it},
-            label = { Text(text = stringResource(id = R.string.tanggal_pinjam)) },
-            isError = tanggal_pinjamError,
-            trailingIcon = { IconPicker(tanggal_pinjamError, "")},
-            supportingText = { ErrorHint(tanggal_pinjamError)},
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Next
-            ),
-            modifier = Modifier.fillMaxWidth()
-
-        )
-
-        OutlinedTextField(value = tanggal_kembali, onValueChange = {tanggal_kembali = it},
-            label = { Text(text = stringResource(id = R.string.tanggal_kembali)) },
-            isError = tanggal_kembaliError,
-            trailingIcon = { IconPicker(tanggal_kembaliError, "")},
-            supportingText = { ErrorHint(tanggal_kembaliError)},
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Number,
-                imeAction = ImeAction.Next
-            ),
-            modifier = Modifier.fillMaxWidth()
-
-        )
-
         OutlinedTextField(value = terlambat, onValueChange = {terlambat = it},
             label = { Text(text = stringResource(id = R.string.terlambat)) },
             isError = terlambatError,
@@ -213,11 +181,16 @@ fun ScreenContent(modifier: Modifier){
                 .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
         ){
             radioOptions.forEach { text ->
-                StatusOption(label = text, isSelected = status == text,
+                StatusOption(
+                    label = text,
+                    isSelected = selectedStatus == text,
                     modifier = Modifier
                         .selectable(
-                            selected = status == text,
-                            onClick = { status = text },
+                            selected = selectedStatus == text,
+                            onClick = {
+                                selectedStatus = text
+                                denda = hitungDenda(terlambat.toInt(), selectedStatus)
+                                      },
                             role = Role.RadioButton
                         )
                         .weight(1f)
@@ -228,15 +201,12 @@ fun ScreenContent(modifier: Modifier){
         Button(onClick = {
             namaError = (nama == "" || nama == "0")
             nimError = (nim == "" || nim == "0")
-            tanggal_pinjamError = (tanggal_pinjam =="" || tanggal_pinjam == "0")
-            tanggal_kembaliError = (tanggal_kembali == "" || tanggal_kembali == "0")
             terlambatError = (terlambat == "" || terlambat == "0")
 
-            if (namaError || nimError || tanggal_pinjamError || tanggal_kembaliError || terlambatError)
+            if (namaError || nimError ||  terlambatError)
                 return@Button
-            val denda = hitungDenda(tanggal_pinjam.toInt(), tanggal_kembali.toInt(), terlambat.toInt())
-            val hasil = getHasil(tanggal_pinjam.toInt(), tanggal_kembali.toInt())
-
+            kategori = if (selectedStatus == "karyawan") "karyawan" else "mahasiswa"
+            denda = hitungDenda(terlambat.toInt(), selectedStatus)
         },
             modifier = Modifier.padding(top = 8.dp),
             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
@@ -244,21 +214,56 @@ fun ScreenContent(modifier: Modifier){
             Text(text = stringResource(id = R.string.hitung))
         }
 
-        if (denda != 0f){
+        if (denda.toInt() != 0) {
             Divider(
                 modifier = Modifier.padding(vertical = 8.dp),
-                thickness = 1.dp
             )
+            val statusText = if (selectedStatus == stringResource(id = R.string.karyawan)) "Karyawan" else "Mahasiswa"
             Text(
-                text = stringResource(id = R.string.Status),
+                text = "Status: $statusText",
                 style = MaterialTheme.typography.titleLarge
             )
-            Text(text = stringResource(hasil). uppercase(),
-                style = MaterialTheme.typography.headlineLarge
+
+            // Menampilkan hasil denda
+            Text(
+                text = "Total Denda: ${denda.toInt()}",
+                style = MaterialTheme.typography.bodyLarge
             )
+            Button(onClick = {
+                shareData(
+                    context,
+                    context.getString(R.string.bagikan_template, terlambat.toString(), selectedStatus, denda.toString())
+                )
+            },
+                modifier = Modifier.padding(top = 8.dp),
+                contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+            ) {
+                Text(text = stringResource(id = R.string.bagikan))
+            }
         }
     }
 }
+
+private fun hitungDenda(hariTerlambat: Int, selectedStatus: String): Float {
+    val kategori = if (selectedStatus.lowercase() == "karyawan") "karyawan" else "mahasiswa"
+    return if (kategori == "karyawan") {
+        hariTerlambat * 5000.toFloat()
+    } else {
+        hariTerlambat * 2000.toFloat()
+    }
+}
+
+private fun shareData(context: Context, message:String){
+    val shareIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, message)
+    }
+    if (shareIntent.resolveActivity(context.packageManager) != null) {
+        context.startActivity(shareIntent)
+    }
+}
+
+
 
 @Composable
 fun StatusOption(label: String, isSelected: Boolean, modifier: Modifier){
@@ -283,16 +288,7 @@ fun IconPicker(isError: Boolean, unit: String){
     }
 }
 
-private fun hitungDenda(tanggal_pinjam: Int, tanggal_kembali: Int, terlambat: Int): Int {
-    val dendaPerHari = 2000
-    val hariTerlambat = tanggal_kembali - tanggal_pinjam - 7
 
-    return if (hariTerlambat > 0) {
-        hariTerlambat * dendaPerHari * terlambat
-    } else {
-        0
-    }
-}
 
 @Composable
 fun ErrorHint(isError: Boolean){
@@ -300,28 +296,6 @@ fun ErrorHint(isError: Boolean){
         Text(text = stringResource(id = R.string.input_invalid))
     }
 }
-
-private fun getHasil(tanggal_pinjam: Int, tanggal_kembali: Int): String {
-    val batasHari = 7
-    val hariPeminjaman = tanggal_kembali - tanggal_pinjam
-
-    return if (hariPeminjaman <= batasHari) {
-        "Aman"
-    } else {
-        "Denda"
-    }
-}
-
-private fun shareData(context: Context, message:String){
-    val shareIntent = Intent(Intent.ACTION_SEND).apply {
-        type = "text/plain"
-        putExtra(Intent.EXTRA_TEXT, message)
-    }
-    if (shareIntent.resolveActivity(context.packageManager) != null) {
-        context.startActivity(shareIntent)
-    }
-}
-
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable

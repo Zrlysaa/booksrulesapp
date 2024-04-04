@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Hitung Dendamu</string>
-    <string name="nama">Nama</string>
+    <string name="app_name">PBooks</string>
+    <string name="nama" translatable="true">Nama</string>
     <string name="nim">NIM/NPM</string>
-    <string name="tanggal_pinjam">Tanggal Pinjam</string>
-    <string name="tanggal_kembali">Tanggal Kembali</string>
     <string name="terlambat">Terlambat</string>
     <string name="mahasiswa">Mahasiswa</string>
     <string name="karyawan">Karyawan</string>
@@ -13,10 +11,12 @@
     <string name="Aman">Aman</string>
     <string name="input_invalid">Data Belum Dimasukkan</string>
     <string name="page_name">Aturan Library</string>
+    <string name="page_hitung">Hitung Dendamu</string>
     <string name="hitung">Hitung</string>
     <string name="bagikan">Bagikan</string>
-    <string name="bagikan_template">Berat badan: %1$s kg\nTinggi badan: %2$s cm\nJenis kelamin: %3$s \n\nBMI: %4$.2f\n%5$s</string>
+    <string name="bagikan_template">Denda %1\$s hari keterlambatan sebagai %2\$s: %3\$s</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="plash"> Hitunglah perkiraan Dendamu dan Setorkan Kepada Petugas Library</string>
     <string name="copyright">PenaltyBook adalah Aplikasi yang menyediakan dua fitur utama: pertama, pengguna dapat dengan mudah menentukan denda yang harus dibayarkan atas keterlambatan pengembalian buku. Fitur ini memungkinkan pengguna untuk mengetahui tarif denda sesuai Kebijakan perpustakaan.
 Fitur kedua dari aplikasi ini adalah kemampuan untuk melihat aturan dan kebijakan peminjaman dan denda di perpustakaan. Pengguna dapat melihat dengan jelas ketentuan peminjaman buku, batas waktu pengembalian, serta tarif denda yang berlaku.
 \n\nAplikasi ini dibuat untuk Asesment 1 Mobile Programming.\nCopyright © 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved.</string>
@@ -30,11 +30,12 @@ Fitur kedua dari aplikasi ini adalah kemampuan untuk melihat aturan dan kebijaka
  \n\n4. Peminjam memastikan buku yang akan dipinjam telah diproses petugas dan telah diberi cap tanggal pengembalian dan menerima SMS/e-mail notifikasi peminjaman, apabila peminjam belum menerima notifikasi peminjaman harus segera mengup-date data nomor telepon selular dan e-mail
  \n\n5. Peminjam wajib memeriksa kembali buku yang akan dipinjam, kerusakan (sobek, basah, stabilo, coretan, kotor, terbakar) yang terjadi pada masa peminjaman menjadi tanggungjawab peminjam dan akan dikenakan sanksi
  \n\n6. Denda sebagai punishment tergantung hari keterlambatan
-     \n\n7.a. Buku yang dipinjam wajib dikembalikan sesuai dengan tanggal
+      \n\n7.Buku yang dipinjam wajib dikembalikan sesuai dengan tanggal
 pengembalian
-\nb. Kerusakan, kehilangan dan keterlambatan pengembalian buku yang
+\na. Kerusakan, kehilangan dan keterlambatan pengembalian buku yang
 dipinjam menjadi tanggungjawab peminjam
-\nc. Buku yang terlambat dikembalikan akan dikenakan denda sebesar
-Rp.1000/buku/hari kerja</string>
+\nb. Buku yang terlambat dikembalikan akan dikenakan denda sebesar
+\n- Mahasiswa : 2000/hari kerja
+ \n- Dosen/Pegawai : 5000/hari kerja </string>
     <string name="kembali">Kembali</string>
 </resources>
