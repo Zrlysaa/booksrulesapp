@@ -38,12 +38,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\ASUS Vivobook\.android\avd\Pixel_3a_API_28.avd" />
+                  <value value="C:\Users\ASUS Vivobook\.android\avd\Pixel_4a_API_34.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-03T10:41:52.516231Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-04-04T04:38:46.937546100Z" />
         </State>
       </entry>
     </value>

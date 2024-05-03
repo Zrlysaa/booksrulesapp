@@ -1,41 +1,35 @@
 <resources>
     <string name="app_name">PBooks</string>
-    <string name="nama" translatable="true">Nama</string>
-    <string name="nim">NIM/NPM</string>
-    <string name="terlambat">Terlambat</string>
-    <string name="mahasiswa">Mahasiswa</string>
-    <string name="karyawan">Karyawan</string>
+    <string name="nama" translatable="true">Penghasilan Perbulan</string>
+    <string name="nim">Penghasilan lainnya</string>
+    <string name="namamu">Nama</string>
+    <string name="tanggal">Tanggal menyalurkan</string>
+    <string name="target">Target</string>
+    <string name="zakat">Zakat berupa</string>
+    <string name="terlambat">Hutang/Cicilan Pokok</string>
+    <string name="mahasiswa">Mufakkir</string>
+    <string name="karyawan">Muzakki</string>
     <string name="Status">Status: %1$.2f </string>
     <string name="Denda">Denda</string>
     <string name="Aman">Aman</string>
     <string name="input_invalid">Data Belum Dimasukkan</string>
-    <string name="page_name">Aturan Library</string>
-    <string name="page_hitung">Hitung Dendamu</string>
+    <string name="page_name">Rencana Zakatmu</string>
+    <string name="page_hitung">Hitung Zakatmu</string>
     <string name="hitung">Hitung</string>
     <string name="bagikan">Bagikan</string>
     <string name="bagikan_template">Denda %1\$s hari keterlambatan sebagai %2\$s: %3\$s</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
-    <string name="plash"> Hitunglah perkiraan Dendamu dan Setorkan Kepada Petugas Library</string>
-    <string name="copyright">PenaltyBook adalah Aplikasi yang menyediakan dua fitur utama: pertama, pengguna dapat dengan mudah menentukan denda yang harus dibayarkan atas keterlambatan pengembalian buku. Fitur ini memungkinkan pengguna untuk mengetahui tarif denda sesuai Kebijakan perpustakaan.
-Fitur kedua dari aplikasi ini adalah kemampuan untuk melihat aturan dan kebijakan peminjaman dan denda di perpustakaan. Pengguna dapat melihat dengan jelas ketentuan peminjaman buku, batas waktu pengembalian, serta tarif denda yang berlaku.
-\n\nAplikasi ini dibuat untuk Asesment 1 Mobile Programming.\nCopyright © 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved.</string>
-    <string name="aturan">1. Peminjaman buku wajib menggunakan KTM/Karpeg/kartu identitas yang berlaku dan tidak diperkenankan menggunakan KTM/Karpeg/kartu identitas anggota lain
- \n\n2. Jumlah peminjaman :
- \nMahasiswa: Maksimal 2 (dua) judul buku yang berbeda
- \nDosen/Pegawai : Maksimal 4 (empat) judul buku yang berbeda
- \n\n3. Waktu peminjaman buku
- \n- Mahasiswa : 7 hari kerja
- \n- Dosen/Pegawai : 14 hari kerja
- \n\n4. Peminjam memastikan buku yang akan dipinjam telah diproses petugas dan telah diberi cap tanggal pengembalian dan menerima SMS/e-mail notifikasi peminjaman, apabila peminjam belum menerima notifikasi peminjaman harus segera mengup-date data nomor telepon selular dan e-mail
- \n\n5. Peminjam wajib memeriksa kembali buku yang akan dipinjam, kerusakan (sobek, basah, stabilo, coretan, kotor, terbakar) yang terjadi pada masa peminjaman menjadi tanggungjawab peminjam dan akan dikenakan sanksi
- \n\n6. Denda sebagai punishment tergantung hari keterlambatan
-    \n\n7.Buku yang dipinjam wajib dikembalikan sesuai dengan tanggal
-pengembalian
-\na. Kerusakan, kehilangan dan keterlambatan pengembalian buku yang
-dipinjam menjadi tanggungjawab peminjam
-\nb. Buku yang terlambat dikembalikan akan dikenakan denda sebesar
-\n- Mahasiswa : 2000/hari kerja
- \n- Dosen/Pegawai : 5000/hari kerja
-    </string>
+    <string name="plash">Zakat Penghasilan adalah Zakat yang di salurkan dari penghasilan yang berada diatas nisab. Nisab Zakat Penghasilan adalah setara 85 gr emas.</string>
+    <string name="copyright">yokZakat adalah Aplikasi yang menyediakan dua fitur utama: pertama, pengguna dapat dengan mudah mengetahui zakat penghasilan yang harus dikeluarkan sesuai nisab. Fitur ini memungkinkan pengguna untuk mengetahui setiap bulan zakat dari penghasilan mereka.
+Fitur kedua dari aplikasi ini adalah Plan tentang waktu kapannya kita ingin mengeluarkan zakat dan menuliskan target zakat yang pengguna ingin salurkan kedepan waktu.
+\n\nAplikasi ini dibuat untuk Asesment Mobile Programming.\nCopyright © 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved.</string>
     <string name="kembali">Kembali</string>
+    <string name="list_kosong">Belum ada data</string>
+    <string name="diklik">%1$s diklik!</string>
+    <string name="tambah_data">Mulai Rencana</string>
+    <string name="kembalikritik">Kembali</string>
+    <string name="simpankritik">Simpan</string>
+    <string name="edit_data">Ubah Rencana</string>
+    
+
 </resources>

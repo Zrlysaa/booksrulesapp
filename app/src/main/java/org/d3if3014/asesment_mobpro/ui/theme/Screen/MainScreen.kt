@@ -136,22 +136,8 @@ fun ScreenContent(modifier: Modifier){
         OutlinedTextField(value = nama, onValueChange = {nama = it},
             label = { Text(text = stringResource(id = R.string.nama)) },
             isError = namaError,
-            trailingIcon = { IconPicker(namaError, "")},
+            leadingIcon = { IconPicker(namaError, "Rp")},
             supportingText = { ErrorHint(namaError)},
-            singleLine = true,
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Text,
-                imeAction = ImeAction.Next
-            ),
-            modifier = Modifier.fillMaxWidth()
-
-        )
-
-        OutlinedTextField(value = nim, onValueChange = {nim = it},
-            label = { Text(text = stringResource(id = R.string.nim)) },
-            isError = nimError,
-            trailingIcon = { IconPicker(nimError, "")},
-            supportingText = { ErrorHint(nimError)},
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -161,10 +147,26 @@ fun ScreenContent(modifier: Modifier){
 
         )
 
+        OutlinedTextField(
+            value = nim,
+            onValueChange = { nim = it },
+            label = { Text(text = stringResource(id = R.string.nim)) },
+            isError = nimError,
+            leadingIcon = { IconPicker(nimError, "Rp") },
+            supportingText = { ErrorHint(nimError) },
+            singleLine = true,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Next
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
+
+
         OutlinedTextField(value = terlambat, onValueChange = {terlambat = it},
             label = { Text(text = stringResource(id = R.string.terlambat)) },
             isError = terlambatError,
-            trailingIcon = { IconPicker(terlambatError, "hari")},
+            leadingIcon = { IconPicker(terlambatError, "Rp")},
             supportingText = { ErrorHint(terlambatError)},
             singleLine = true,
             keyboardOptions = KeyboardOptions(
@@ -226,7 +228,7 @@ fun ScreenContent(modifier: Modifier){
 
             // Menampilkan hasil denda
             Text(
-                text = "Total Denda: ${denda.toInt()}",
+                text = "Zakat yang disalurkan: ${denda.toInt()}",
                 style = MaterialTheme.typography.bodyLarge
             )
             Button(onClick = {
@@ -249,7 +251,7 @@ private fun hitungDenda(hariTerlambat: Int, selectedStatus: String): Float {
     return if (kategori == "karyawan") {
         hariTerlambat * 5000.toFloat()
     } else {
-        hariTerlambat * 2000.toFloat()
+        hariTerlambat * 1000.toFloat()
     }
 }
 

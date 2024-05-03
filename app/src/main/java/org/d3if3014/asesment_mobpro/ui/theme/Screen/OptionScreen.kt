@@ -33,7 +33,7 @@ fun OptionScreen (navController: NavHostController) {
         ) {
             Spacer(modifier = Modifier.height(150.dp))
             Image(
-                painter = painterResource(id = R.drawable.denda),
+                painter = painterResource(id = R.drawable.hitung),
                 contentDescription = null,
                 modifier = Modifier
                     .padding(vertical = 16.dp, horizontal = 100.dp)
@@ -44,7 +44,7 @@ fun OptionScreen (navController: NavHostController) {
             )
 
             Image(
-                painter = painterResource(id = R.drawable.note),
+                painter = painterResource(id = R.drawable.notee),
                 contentDescription = null,
                 modifier = Modifier
                     .padding(vertical = 20.dp, horizontal = 100.dp)

@@ -57,13 +57,13 @@ fun AboutScreen(navController: NavHostController) {
                 .verticalScroll(rememberScrollState())
         ) {
             Image(
-                painter = painterResource(id = R.drawable.maskot),
+                painter = painterResource(id = R.drawable.yt),
                 contentDescription = null,
-                modifier = Modifier.padding(top = 30.dp)
+                modifier = Modifier.padding(top = 5.dp)
             )
             Text(text = stringResource(R.string.copyright),
-                modifier = Modifier.padding(30.dp)
-                    .padding(top = 8.dp)
+                modifier = Modifier.padding( horizontal = 25.dp)
+                    .padding(top = 2.dp)
             )
         }
     }

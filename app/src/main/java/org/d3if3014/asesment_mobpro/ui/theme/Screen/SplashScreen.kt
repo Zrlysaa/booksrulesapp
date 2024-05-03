@@ -27,7 +27,7 @@ import org.d3if3014.asesment_mobpro.R
 import org.d3if3014.asesment_mobpro.ui.theme.Asesment_mobproTheme
 
 
-val Purple_A = Color(0xFF6A2441)
+val Purple_A = Color(0xFFFFDCB3)
 @Composable
 fun SplashScreen (navController: NavHostController){
     Box(
@@ -35,40 +35,40 @@ fun SplashScreen (navController: NavHostController){
             .fillMaxSize()
             .background(color = Purple_A),
     ) {
-        Image(painter = painterResource(id = R.drawable.library),
+        Image(painter = painterResource(id = R.drawable.zakat_peng),
             contentDescription = "Image",
             modifier = Modifier
-                .padding(top = 150.dp)
+                .padding(top = 120.dp)
                 .fillMaxWidth(),
         )
         Text(
-            text = "Cari Tahu kondisi Bukumu? ",
+            text = "Ayo Tunaikan Zakat!",
             style = MaterialTheme.typography.headlineLarge,
             fontSize = 22.sp,
-            fontWeight = FontWeight(800),
-            color = Color.White,
+            fontWeight = FontWeight(700),
+            color = Color.Black,
             modifier = Modifier
-                .padding(top = 150.dp)
+                .padding(top = 160.dp)
                 .padding(horizontal = 20.dp)
                 .align(Alignment.Center),
         )
         Text(
-            text = "Perkirakan dan kelola keterlambatanmu ",
+            text = "Mari Atur Zakat Penghasilanmu",
             style = MaterialTheme.typography.headlineLarge,
             fontSize = 18.sp,
-            color = Color.White,
+            color = Color.Black,
             modifier = Modifier
-                .padding(top = 250.dp)
-                .padding(horizontal = 20.dp)
-                .align(Alignment.Center),
+                .padding(top = 240.dp)
+                .padding(horizontal = 30.dp)
+                .align(Alignment.Center)
         )
         Button(
             onClick = { navController.navigate("optionScreen") },
             modifier = Modifier
                 .fillMaxWidth(0.5f)
-                .padding(top = 450.dp)
+                .padding(top = 400.dp)
                 .align(Alignment.Center),
-            contentPadding = PaddingValues(16.dp),
+            contentPadding = PaddingValues(20.dp),
             colors = ButtonDefaults.buttonColors(
                 Color.White,
                 contentColor = Color.Black
