@@ -7,13 +7,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import org.d3if3014.asesment_mobpro.ui.screen.MainScreen
 import org.d3if3014.asesment_mobpro.ui.theme.Screen.DetailScreen
 import org.d3if3014.asesment_mobpro.ui.theme.Screen.KEY_ID_KRITIK
 import org.d3if3014.asesment_mobpro.ui.theme.Screen.OptionScreen
 import org.d3if3014.asesment_mobpro.ui.theme.Screen.RulesScreen
 import org.d3if3014.asesment_mobpro.ui.theme.Screen.SplashScreen
 import org.d3if3014.mobpro.ui.screen.AboutScreen
-import org.d3if3014.mobpro.ui.screen.MainScreen
+
+
 
 @Composable
 fun SetUpnavGraph(navController: NavHostController = rememberNavController()) {

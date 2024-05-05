@@ -1,10 +1,10 @@
-package org.d3if3014.mobpro.ui.screen
+package org.d3if3014.asesment_mobpro.ui.screen
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
-import androidx.compose.foundation.border
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.selection.selectable
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -30,23 +28,19 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,6 +50,8 @@ import androidx.navigation.compose.rememberNavController
 import org.d3if3014.asesment_mobpro.R
 import org.d3if3014.asesment_mobpro.navigation.Screen
 import org.d3if3014.asesment_mobpro.ui.theme.Asesment_mobproTheme
+import java.text.NumberFormat
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -103,22 +99,14 @@ fun MainScreen(navController: NavController){
 @SuppressLint("StringFormatInvalid", "StringFormatMatches")
 @Composable
 fun ScreenContent(modifier: Modifier){
-    var nama by remember { mutableStateOf("") }
-    var namaError by remember { mutableStateOf(false) }
-    var nim by remember { mutableStateOf("") }
-    var nimError by remember { mutableStateOf(false) }
-    var terlambat by remember { mutableStateOf("") }
-    var terlambatError by remember { mutableStateOf(false) }
-    var denda by remember { mutableFloatStateOf(0f) }
-
-    val radioOptions = listOf(
-        stringResource(id = R.string.karyawan),
-        stringResource(id = R.string.mahasiswa)
-    )
-    var selectedStatus by remember { mutableStateOf(radioOptions[0]) }
-
-    // Definisi variabel kategori di luar blok Button
-    var kategori by remember { mutableStateOf("") }
+    var gaji by remember { mutableStateOf("") }
+    var gajiError by remember { mutableStateOf(false) }
+    var gajiTambahan by remember { mutableStateOf("") } // Defaultnya adalah "0"
+    var gajiTambahanError by remember { mutableStateOf(false) }
+    var hutang by remember { mutableStateOf("") }
+    var hutangError by remember { mutableStateOf(false) }
+    var zakat by remember { mutableStateOf(0f) }
+    var isCalculated by remember { mutableStateOf(false) } // State untuk menandai apakah perhitungan telah dilakukan
 
     val context = LocalContext.current
     Column (
@@ -133,11 +121,11 @@ fun ScreenContent(modifier: Modifier){
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier.fillMaxWidth()
         )
-        OutlinedTextField(value = nama, onValueChange = {nama = it},
+        OutlinedTextField(value = gaji ,  onValueChange = {gaji = it},
             label = { Text(text = stringResource(id = R.string.nama)) },
-            isError = namaError,
-            leadingIcon = { IconPicker(namaError, "Rp")},
-            supportingText = { ErrorHint(namaError)},
+            isError = gajiError,
+            leadingIcon = { IconPicker(gajiError, "Rp") },
+            supportingText = { ErrorHint(gajiError) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -148,12 +136,12 @@ fun ScreenContent(modifier: Modifier){
         )
 
         OutlinedTextField(
-            value = nim,
-            onValueChange = { nim = it },
+            value = gajiTambahan,
+            onValueChange = { gajiTambahan = it },
             label = { Text(text = stringResource(id = R.string.nim)) },
-            isError = nimError,
-            leadingIcon = { IconPicker(nimError, "Rp") },
-            supportingText = { ErrorHint(nimError) },
+            isError = gajiTambahanError,
+            leadingIcon = { IconPicker(gajiTambahanError, "Rp") },
+            supportingText = { ErrorHint(gajiTambahanError) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -163,11 +151,11 @@ fun ScreenContent(modifier: Modifier){
         )
 
 
-        OutlinedTextField(value = terlambat, onValueChange = {terlambat = it},
+        OutlinedTextField(value = hutang, onValueChange = {hutang = it},
             label = { Text(text = stringResource(id = R.string.terlambat)) },
-            isError = terlambatError,
-            leadingIcon = { IconPicker(terlambatError, "Rp")},
-            supportingText = { ErrorHint(terlambatError)},
+            isError = hutangError,
+            leadingIcon = { IconPicker(hutangError, "Rp") },
+            supportingText = { ErrorHint(hutangError) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number,
@@ -177,82 +165,108 @@ fun ScreenContent(modifier: Modifier){
 
         )
 
-        Row (
-            modifier = Modifier
-                .padding(top = 6.dp)
-                .border(1.dp, Color.Gray, RoundedCornerShape(4.dp))
-        ){
-            radioOptions.forEach { text ->
-                StatusOption(
-                    label = text,
-                    isSelected = selectedStatus == text,
-                    modifier = Modifier
-                        .selectable(
-                            selected = selectedStatus == text,
-                            onClick = {
-                                selectedStatus = text
-                                denda = hitungDenda(terlambat.toInt(), selectedStatus)
-                                      },
-                            role = Role.RadioButton
-                        )
-                        .weight(1f)
-                        .padding(16.dp)
-                )
-            }
-        }
-        Button(onClick = {
-            namaError = (nama == "" || nama == "0")
-            nimError = (nim == "" || nim == "0")
-            terlambatError = (terlambat == "" || terlambat == "0")
-
-            if (namaError || nimError ||  terlambatError)
-                return@Button
-            kategori = if (selectedStatus == "karyawan") "karyawan" else "mahasiswa"
-            denda = hitungDenda(terlambat.toInt(), selectedStatus)
-        },
-            modifier = Modifier.padding(top = 8.dp),
-            contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Text(text = stringResource(id = R.string.hitung))
-        }
-
-        if (denda.toInt() != 0) {
-            Divider(
-                modifier = Modifier.padding(vertical = 8.dp),
-            )
-            val statusText = if (selectedStatus == stringResource(id = R.string.karyawan)) "Karyawan" else "Mahasiswa"
-            Text(
-                text = "Status: $statusText",
-                style = MaterialTheme.typography.titleLarge
-            )
-
-            // Menampilkan hasil denda
-            Text(
-                text = "Zakat yang disalurkan: ${denda.toInt()}",
-                style = MaterialTheme.typography.bodyLarge
-            )
-            Button(onClick = {
-                shareData(
-                    context,
-                    context.getString(R.string.bagikan_template, terlambat.toString(), selectedStatus, denda.toString())
-                )
-            },
+            Button(
+                onClick = {
+                    gajiError = (gaji.isBlank() || gaji == "0")
+                    hutangError = (hutang.isBlank() || hutang == "0")
+                    if (gajiTambahan.isBlank()) {
+                        gajiTambahan = "0"
+                    }
+                    if (!gajiError && !hutangError) {
+                        val gajiInt = gaji.toIntOrNull() ?: 0
+                        val gajiTambahanInt = gajiTambahan.toIntOrNull() ?: 0
+                        val hutangInt = hutang.toIntOrNull() ?: 0
+                        Log.d("Button_Clicked", "Gaji: $gajiInt, Gaji Tambahan: $gajiTambahanInt, Hutang: $hutangInt")
+                        zakat = hitungZakat(gajiInt, gajiTambahanInt, hutangInt)
+                        isCalculated = true
+                    }
+                },
                 modifier = Modifier.padding(top = 8.dp),
                 contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
             ) {
-                Text(text = stringResource(id = R.string.bagikan))
+                Text(text = stringResource(id = R.string.hitung))
+            }
+
+            // Tombol reset
+            if (isCalculated) { // Tampilkan tombol reset jika perhitungan telah dilakukan
+                Button(
+                    onClick = {
+                        // Reset semua nilai dan state
+                        gaji = ""
+                        gajiTambahan = "" // Set ulang ke "0" saat di-reset
+                        hutang = ""
+                        zakat = 0f
+                        isCalculated = false
+                        // Atur pesan kesalahan ke false untuk menghilangkan pesan kesalahan yang mungkin muncul
+                        gajiError = false
+                        gajiTambahanError = false
+                        hutangError = false
+                    },
+                    modifier = Modifier.padding(top = 8.dp),
+                    contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+                ) {
+                    Text(text = stringResource(id = R.string.reset))
+                }
             }
         }
+
+        // Tampilkan hasil perhitungan jika sudah dihitung
+        if (isCalculated) {
+            Divider(
+                modifier = Modifier.padding(vertical = 8.dp),
+            )
+
+            // Cek apakah gaji lebih besar dari hutang
+            if (gaji.toInt() > hutang.toInt()) {
+                // Menampilkan hasil zakat jika gaji lebih besar dari hutang
+                Text(
+                    text = "Zakat yang disalurkan: Rp ${formatZakatToIDR(zakat)}" ,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+
+                Button(onClick = {
+                    shareData(
+                        context,
+                        context.getString(R.string.bagikan_template, hutang, zakat)
+                    )
+                },
+                    modifier = Modifier.padding(top = 8.dp),
+                    contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
+                ) {
+                    Text(text = stringResource(id = R.string.bagikan))
+                }
+            } else {
+                // Menampilkan pesan bahwa pengguna belum wajib membayar zakat
+                Text(
+                    text = "Anda belum wajib membayar zakat. Lunasi hutang Anda terlebih dahulu." ,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            }
+        }
+
     }
 }
 
-private fun hitungDenda(hariTerlambat: Int, selectedStatus: String): Float {
-    val kategori = if (selectedStatus.lowercase() == "karyawan") "karyawan" else "mahasiswa"
-    return if (kategori == "karyawan") {
-        hariTerlambat * 5000.toFloat()
+
+private fun hitungZakat(gaji: Int, gajiTambahan: Int, hutang: Int): Float {
+    val totalGaji = if (gajiTambahan == 0) gaji else gaji + gajiTambahan // Jika gajiTambahan == 0, maka gunakan gaji pokok saja, jika tidak, tambahkan gajiTambahan
+    val totalSetelahHutang = totalGaji - hutang // Hitung total gaji setelah dikurangi hutang
+
+    val zakat: Float = if (totalSetelahHutang > 0) {
+        totalSetelahHutang * 0.025f // Hitung zakat jika totalSetelahHutang > 0
     } else {
-        hariTerlambat * 1000.toFloat()
+        0f // Jika totalSetelahHutang <= 0, maka zakat adalah 0
     }
+    return zakat
+}
+
+private fun formatZakatToIDR(zakat: Float): String {
+    val formatter = NumberFormat.getCurrencyInstance(Locale("id", "ID")) // Buat formatter untuk mata uang Rupiah (IDR)
+    return formatter.format(zakat.toDouble()) // Kembalikan nilai zakat yang diformat sebagai IDR
 }
 
 private fun shareData(context: Context, message:String){
@@ -265,22 +279,6 @@ private fun shareData(context: Context, message:String){
     }
 }
 
-
-
-@Composable
-fun StatusOption(label: String, isSelected: Boolean, modifier: Modifier){
-    Row(
-        modifier = modifier,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        RadioButton(selected = isSelected, onClick = null)
-        Text(text = label,
-            style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(start= 8.dp)
-        )
-    }
-}
-
 @Composable
 fun IconPicker(isError: Boolean, unit: String){
     if (isError) {
@@ -290,14 +288,13 @@ fun IconPicker(isError: Boolean, unit: String){
     }
 }
 
-
-
 @Composable
 fun ErrorHint(isError: Boolean){
     if (isError) {
         Text(text = stringResource(id = R.string.input_invalid))
     }
 }
+
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable

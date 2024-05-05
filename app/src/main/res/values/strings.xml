@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">PBooks</string>
-    <string name="nama" translatable="true">Penghasilan Perbulan</string>
-    <string name="nim">Penghasilan lainnya</string>
+    <string name="app_name">yokZakat</string>
+    <string name="nama" translatable="true">Penghasilan Pokok Perbulan</string>
+    <string name="nim">Penghasilan lainnya (Opsional)</string>
     <string name="namamu">Nama</string>
     <string name="tanggal">Tanggal menyalurkan</string>
     <string name="target">Target</string>
     <string name="zakat">Zakat berupa</string>
-    <string name="terlambat">Hutang/Cicilan Pokok</string>
+    <string name="terlambat">Hutang/Kebutuhan Pokok</string>
     <string name="mahasiswa">Mufakkir</string>
     <string name="karyawan">Muzakki</string>
     <string name="Status">Status: %1$.2f </string>
@@ -17,12 +17,12 @@
     <string name="page_hitung">Hitung Zakatmu</string>
     <string name="hitung">Hitung</string>
     <string name="bagikan">Bagikan</string>
-    <string name="bagikan_template">Denda %1\$s hari keterlambatan sebagai %2\$s: %3\$s</string>
+    <string name="bagikan_template">Wajib membayar  \nHutang: %1$s, Zakat: %2$.0f</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
-    <string name="plash">Zakat Penghasilan adalah Zakat yang di salurkan dari penghasilan yang berada diatas nisab. Nisab Zakat Penghasilan adalah setara 85 gr emas.</string>
+    <string name="plash">Zakat Penghasilan adalah Zakat yang di salurkan dari penghasilan yang berada diatas nisab. Nisab Zakat Penghasilan adalah setara 85 gr emas. \n(format langsung nominal)</string>
     <string name="copyright">yokZakat adalah Aplikasi yang menyediakan dua fitur utama: pertama, pengguna dapat dengan mudah mengetahui zakat penghasilan yang harus dikeluarkan sesuai nisab. Fitur ini memungkinkan pengguna untuk mengetahui setiap bulan zakat dari penghasilan mereka.
 Fitur kedua dari aplikasi ini adalah Plan tentang waktu kapannya kita ingin mengeluarkan zakat dan menuliskan target zakat yang pengguna ingin salurkan kedepan waktu.
-\n\nAplikasi ini dibuat untuk Asesment Mobile Programming.\nCopyright © 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved.</string>
+\n\nAplikasi ini dibuat untuk Asesment Mobile Programming.\n no Copyright © 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved.</string>
     <string name="kembali">Kembali</string>
     <string name="list_kosong">Belum ada data</string>
     <string name="diklik">%1$s diklik!</string>
@@ -38,5 +38,6 @@ Fitur kedua dari aplikasi ini adalah Plan tentang waktu kapannya kita ingin meng
     <string name="tombol_batal">Batal</string>
     <string name="list">Tampilan list</string>
     <string name="grid">Tampilan grid</string>
+    <string name="reset">Reset</string>
 
 </resources>
