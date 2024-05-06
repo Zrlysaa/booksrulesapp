@@ -17,9 +17,9 @@
     <string name="page_hitung">Hitung Zakatmu</string>
     <string name="hitung">Hitung</string>
     <string name="bagikan">Bagikan</string>
-    <string name="bagikan_template">Wajib membayar  \nHutang: %1$s, Zakat: %2$.0f</string>
+    <string name="bagikan_template">Wajib membayar Zakat \nHutang: %1$s, Zakat: %2$.0f</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
-    <string name="plash">Zakat Penghasilan adalah Zakat yang di salurkan dari penghasilan yang berada diatas nisab. Nisab Zakat Penghasilan adalah setara 85 gr emas. \n(format langsung nominal)</string>
+    <string name="plash">Zakat Penghasilan adalah Zakat yang di salurkan dari penghasilan yang berada diatas nisab. Nisab Zakat Penghasilan adalah setara 85 gr emas. Zakat ini dihitung perbulannyaakat \n(format langsung nominal tanpa titik dan koma  )</string>
     <string name="copyright">yokZakat adalah Aplikasi yang menyediakan dua fitur utama: pertama, pengguna dapat dengan mudah mengetahui zakat penghasilan yang harus dikeluarkan sesuai nisab. Fitur ini memungkinkan pengguna untuk mengetahui setiap bulan zakat dari penghasilan mereka.
 Fitur kedua dari aplikasi ini adalah Plan tentang waktu kapannya kita ingin mengeluarkan zakat dan menuliskan target zakat yang pengguna ingin salurkan kedepan waktu.
 \n\nAplikasi ini dibuat untuk Asesment Mobile Programming.\n no Copyright © 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved.</string>
