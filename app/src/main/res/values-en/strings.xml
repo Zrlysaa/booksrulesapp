@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">yokZakta</string>
+    <string name="app_name">yokZakat</string>
     <string name="nama" translatable="true">monthly income</string>
     <string name="nim"  translatable="true">Other income (Optional)</string>
     <string name="namamu"  translatable="true">Name</string>
@@ -11,7 +11,7 @@
     <string name="Aman" translatable="true">Safe</string>
     <string name="terlambat"> Debt / Basic Needs</string>
     <string name="input_invalid">Data Not Entered</string>
-    <string name="page_name">Data Not Entered</string>
+    <string name="page_name">Zakat Planner</string>
     <string name="page_hitung">Calculate your Zakat</string>
     <string name="hitung">Count</string>
     <string name="bagikan_template">Wajeb to pay Zakat \nHutang: %1$s, Zakat: %2$.0f</string>
@@ -35,6 +35,7 @@ The second feature of this application is the Plan about the time when we want t
     <string name="invalid">name, date, zakat type, target cannot be empty</string>
     <string name="reset">Reset</string>
     <string name="edit_data">Change The Plan</string>
+
 
 
 </resources>
