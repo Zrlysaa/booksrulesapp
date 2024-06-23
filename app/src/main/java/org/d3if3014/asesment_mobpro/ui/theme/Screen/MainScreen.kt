@@ -41,6 +41,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -71,7 +73,7 @@ fun MainScreen(navController: NavController){
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Spacer(modifier = Modifier.width(20.dp))
-                        Text(text = stringResource(id = R.string.page_hitung))
+                        Text(text = stringResource(id = R.string.page_hitung),  fontFamily = FontFamily(Font(R.font.poppins)))
                     }
                 },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
@@ -118,11 +120,11 @@ fun ScreenContent(modifier: Modifier){
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = stringResource(id = R.string.plash),
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.bodyMedium,  fontFamily = FontFamily(Font(R.font.poppins)),
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(value = gaji ,  onValueChange = {gaji = it},
-            label = { Text(text = stringResource(id = R.string.nama)) },
+            label = { Text(text = stringResource(id = R.string.nama),  fontFamily = FontFamily(Font(R.font.poppins))) },
             isError = gajiError,
             leadingIcon = { IconPicker(gajiError, "Rp") },
             supportingText = { ErrorHint(gajiError) },
@@ -138,7 +140,7 @@ fun ScreenContent(modifier: Modifier){
         OutlinedTextField(
             value = gajiTambahan,
             onValueChange = { gajiTambahan = it },
-            label = { Text(text = stringResource(id = R.string.nim)) },
+            label = { Text(text = stringResource(id = R.string.nim), fontFamily = FontFamily(Font(R.font.poppins))) },
             isError = gajiTambahanError,
             leadingIcon = { IconPicker(gajiTambahanError, "Rp") },
             supportingText = { ErrorHint(gajiTambahanError) },
@@ -152,7 +154,7 @@ fun ScreenContent(modifier: Modifier){
 
 
         OutlinedTextField(value = hutang, onValueChange = {hutang = it},
-            label = { Text(text = stringResource(id = R.string.terlambat)) },
+            label = { Text(text = stringResource(id = R.string.terlambat),  fontFamily = FontFamily(Font(R.font.poppins))) },
             isError = hutangError,
             leadingIcon = { IconPicker(hutangError, "Rp") },
             supportingText = { ErrorHint(hutangError) },
@@ -209,7 +211,7 @@ fun ScreenContent(modifier: Modifier){
                     modifier = Modifier.padding(top = 8.dp),
                     contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
                 ) {
-                    Text(text = stringResource(id = R.string.reset))
+                    Text(text = stringResource(id = R.string.reset),  fontFamily = FontFamily(Font(R.font.poppins)))
                 }
             }
         }
@@ -237,13 +239,14 @@ fun ScreenContent(modifier: Modifier){
                     modifier = Modifier.padding(top = 8.dp),
                     contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp)
                 ) {
-                    Text(text = stringResource(id = R.string.bagikan))
+                    Text(text = stringResource(id = R.string.bagikan),  fontFamily = FontFamily(Font(R.font.poppins)))
                 }
             } else {
                 // Menampilkan pesan bahwa pengguna belum wajib membayar zakat
                 Text(
                     text = "Anda belum wajib membayar zakat. Lunasi hutang Anda terlebih dahulu." ,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
+                            fontFamily = FontFamily(Font(R.font.poppins))
                 )
             }
         }
@@ -291,7 +294,7 @@ fun IconPicker(isError: Boolean, unit: String){
 @Composable
 fun ErrorHint(isError: Boolean){
     if (isError) {
-        Text(text = stringResource(id = R.string.input_invalid))
+        Text(text = stringResource(id = R.string.input_invalid),  fontFamily = FontFamily(Font(R.font.poppins)))
     }
 }
 

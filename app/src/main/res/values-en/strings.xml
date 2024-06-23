@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">yokZakta</string>
+    <string name="nama" translatable="true">monthly income</string>
+    <string name="nim"  translatable="true">Other income (Optional)</string>
+    <string name="namamu"  translatable="true">Name</string>
+    <string name="zakat">Zakat in the form of</string>
+    <string name="tanggal">Date</string>
+    <string name="target">Target</string>
+    <string name="Status">Status: %1$.2f </string>
+    <string name="Aman" translatable="true">Safe</string>
+    <string name="terlambat"> Debt / Basic Needs</string>
+    <string name="input_invalid">Data Not Entered</string>
+    <string name="page_name">Data Not Entered</string>
+    <string name="page_hitung">Calculate your Zakat</string>
+    <string name="hitung">Count</string>
+    <string name="bagikan_template">Wajeb to pay Zakat \nHutang: %1$s, Zakat: %2$.0f</string>
+    <string name="tentang_aplikasi">About application</string>
+    <string name="plash">Zakat on Income is Zakat that is distributed from income that is above the nisab. Nisab of Zakat on Income is equal to 85 gr of gold. This zakat is calculated monthly \n(direct nominal format without periods and commas)</string>
+    <string name="copyright">yokZakat is an Application that provides two main features: first, users can easily find out the income zakat that must be paid according to the nisab. This feature allows users to know every month the zakat of their income.
+The second feature of this application is the Plan about the time when we want to issue zakat and write the target zakat that users want to distribute in the future.
+\n\nThis application is made for Mobile Programming Assessment.\n no Copyright © 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved.</string>
+    <string name="kembali">Back</string>
+    <string name="list_kosong">No data yet</string>
+    <string name="lainnya">Another Options</string>
+    <string name="tombol_batal">Cancel</string>
+    <string name="rencana">Start The Plan</string>
+    <string name="kembalikritik">Kembali</string>
+    <string name="simpankritik">Simpan</string>
+    <string name="hapus">Record remove</string>
+    <string name="list">List view</string>
+    <string name="grid" translatable="true">Grid view</string>
+    <string name="pesan_hapus">Record Remove</string>
+    <string name="tombol_hapus">Remove</string>
+    <string name="invalid">name, date, zakat type, target cannot be empty</string>
+    <string name="reset">Reset</string>
+    <string name="edit_data">Change The Plan</string>
+
+
+</resources>

@@ -21,8 +21,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if3014.asesment_mobpro.R
@@ -43,7 +46,11 @@ fun AboutScreen(navController: NavHostController) {
                         )
                     }
                 },
-                title = { Text(text = stringResource(id = R.string.tentang_aplikasi)) },
+                title = { Text(text = stringResource(id = R.string.tentang_aplikasi),  fontFamily = FontFamily(
+                    Font(R.font.poppins)
+
+                )
+                ) },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     titleContentColor = MaterialTheme.colorScheme.onPrimary,
@@ -62,6 +69,8 @@ fun AboutScreen(navController: NavHostController) {
                 modifier = Modifier.padding(top = 5.dp)
             )
             Text(text = stringResource(R.string.copyright),
+                fontFamily = FontFamily(Font(R.font.poppins)),
+                fontSize = 16.sp,
                 modifier = Modifier.padding( horizontal = 25.dp)
                     .padding(top = 2.dp)
             )

@@ -1,6 +1,7 @@
 package org.d3if3014.asesment_mobpro
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import org.d3if3014.asesment_mobpro.navigation.SetUpnavGraph
 import org.d3if3014.asesment_mobpro.ui.theme.Asesment_mobproTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,6 +29,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
     }
 }
 

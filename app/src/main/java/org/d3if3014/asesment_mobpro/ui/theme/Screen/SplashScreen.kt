@@ -17,6 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -44,7 +46,8 @@ fun SplashScreen (navController: NavHostController){
         Text(
             text = "Ayo Tunaikan Zakat!",
             style = MaterialTheme.typography.headlineLarge,
-            fontSize = 22.sp,
+            fontFamily = FontFamily(Font(R.font.poppins)),
+            fontSize = 18.sp,
             fontWeight = FontWeight(700),
             color = Color.Black,
             modifier = Modifier
@@ -53,9 +56,10 @@ fun SplashScreen (navController: NavHostController){
                 .align(Alignment.Center),
         )
         Text(
-            text = "Mari Atur Zakat Penghasilanmu",
+            text = "Let's Organize Your Income Zakat",
             style = MaterialTheme.typography.headlineLarge,
-            fontSize = 18.sp,
+            fontFamily = FontFamily(Font(R.font.poppins)),
+            fontSize = 16.sp,
             color = Color.Black,
             modifier = Modifier
                 .padding(top = 240.dp)
@@ -74,7 +78,7 @@ fun SplashScreen (navController: NavHostController){
                 contentColor = Color.Black
             )
         ) {
-            Text(text = "Get Started")
+            Text(text = "Get Started",  fontFamily = FontFamily(Font(R.font.poppins)))
         }
     }
 

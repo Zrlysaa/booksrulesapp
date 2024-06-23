@@ -1,8 +1,8 @@
 package org.d3if3014.asesment_mobpro.ui.theme.Screen
 
 import android.content.res.Configuration
-import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -36,23 +37,19 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.datastore.dataStore
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.viewModelFactory
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.CoroutineScope
@@ -65,6 +62,7 @@ import org.d3if3014.asesment_mobpro.navigation.Screen
 import org.d3if3014.asesment_mobpro.ui.theme.Asesment_mobproTheme
 import org.d3if3014.asesment_mobpro.util.SettingsDataStore
 import org.d3if3014.asesment_mobpro.util.ViewModelFactory
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -90,7 +88,10 @@ fun RulesScreen(navController: NavHostController) {
                 title = {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Spacer(modifier = Modifier.width(20.dp))
-                        Text(text = stringResource(id = R.string.page_name))
+                        Text(text = stringResource(id = R.string.page_name), fontFamily = FontFamily(
+                            Font(R.font.poppins)
+                        )
+                        )
                     }
                 }, colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,
@@ -112,7 +113,7 @@ fun RulesScreen(navController: NavHostController) {
                         )
                     }
                 }
-                )
+            )
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -121,7 +122,7 @@ fun RulesScreen(navController: NavHostController) {
                 }
             ) {
                 Icon(imageVector = Icons.Filled.Add,
-                    contentDescription = stringResource(id = R.string.tambah_data),
+                    contentDescription = stringResource(id = R.string.rencana),
                     tint = MaterialTheme.colorScheme.primary
                 )
             }
@@ -187,22 +188,32 @@ fun ScreenModel(showList: Boolean, modifier: Modifier, navController: NavHostCon
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = stringResource(id = R.string.list_kosong))
+            Image(
+                painter = painterResource(id = R.drawable.pena),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(200.dp)
+                    .padding(bottom = 10.dp)
+            )
+
+            Text(text = stringResource(id = R.string.list_kosong),
+                fontFamily = FontFamily(Font(R.font.poppins))
+            )
         }
     } else {
         if (showList) {
             LazyColumn(
-            modifier = modifier
-                .fillMaxSize(),
-            contentPadding = PaddingValues(bottom = 84.dp)
-        ) {
-            items(data) {
-                ListItem(kritikSaran = it) {
-                    navController.navigate(Screen.FormUbah.withId(it.id))
+                modifier = modifier
+                    .fillMaxSize(),
+                contentPadding = PaddingValues(bottom = 84.dp)
+            ) {
+                items(data) {
+                    ListItem(kritikSaran = it) {
+                        navController.navigate(Screen.FormUbah.withId(it.id))
+                    }
+                    Divider()
                 }
-                Divider()
             }
-        }
         } else {
             LazyVerticalStaggeredGrid(
                 modifier = modifier.fillMaxSize(),
@@ -247,6 +258,7 @@ fun ListItem(kritikSaran: KritikSaran, onClik:() -> Unit){
             overflow = TextOverflow.Ellipsis)
     }
 }
+
 
 
 @Preview(showBackground = true)

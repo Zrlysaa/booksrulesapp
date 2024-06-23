@@ -1,22 +1,19 @@
 <resources>
     <string name="app_name">yokZakat</string>
-    <string name="nama" translatable="true">Penghasilan Pokok Perbulan</string>
+    <string name="nama">Penghasilan Pokok Perbulan</string>
     <string name="nim">Penghasilan lainnya (Opsional)</string>
     <string name="namamu">Nama</string>
     <string name="tanggal">Tanggal menyalurkan</string>
     <string name="target">Target</string>
     <string name="zakat">Zakat berupa</string>
     <string name="terlambat">Hutang/Kebutuhan Pokok</string>
-    <string name="mahasiswa">Mufakkir</string>
-    <string name="karyawan">Muzakki</string>
     <string name="Status">Status: %1$.2f </string>
-    <string name="Denda">Denda</string>
     <string name="Aman">Aman</string>
     <string name="input_invalid">Data Belum Dimasukkan</string>
     <string name="page_name">Rencana Zakatmu</string>
     <string name="page_hitung">Hitung Zakatmu</string>
     <string name="hitung">Hitung</string>
-    <string name="bagikan">Bagikan</string>
+    <string name="bagikan" translatable="false">Share</string>
     <string name="bagikan_template">Wajib membayar Zakat \nHutang: %1$s, Zakat: %2$.0f</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
     <string name="plash">Zakat Penghasilan adalah Zakat yang di salurkan dari penghasilan yang berada diatas nisab. Nisab Zakat Penghasilan adalah setara 85 gr emas. Zakat ini dihitung perbulannyaakat \n(format langsung nominal tanpa titik dan koma  )</string>
@@ -25,8 +22,8 @@ Fitur kedua dari aplikasi ini adalah Plan tentang waktu kapannya kita ingin meng
 \n\nAplikasi ini dibuat untuk Asesment Mobile Programming.\n no Copyright © 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved.</string>
     <string name="kembali">Kembali</string>
     <string name="list_kosong">Belum ada data</string>
-    <string name="diklik">%1$s diklik!</string>
-    <string name="tambah_data">Mulai Rencana</string>
+    <string name="diklik" translatable="false">%1$s diklik!</string>
+    <string name="rencana">Mulai Rencana</string>
     <string name="kembalikritik">Kembali</string>
     <string name="simpankritik">Simpan</string>
     <string name="edit_data">Ubah Rencana</string>
