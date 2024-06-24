@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">yokZakat</string>
+    <string name="nama" translatable="true">Penghasilan Pokok Perbulan</string>
+    <string name="nim">Penghasilan Lainnya (0ptional)</string>
+    <string name="namamu">Nama</string>
+    <string name="tanggal">Tanggal menyalurkan</string>
+    <string name="zakat">Zakat berupa</string>
+    <string name="target">Target</string>
+    <string name="terlambat">Hutang/ Kebutuhan  Pokok </string>
+    <string name="Status">Status: %1$.2f </string>
+    <string name="Denda">Denda</string>
+    <string name="Aman">Aman</string>
+    <string name="input_invalid">Data Belum Dimasukkan</string>
+    <string name="page_name">Rencana Zakatmu</string>
+    <string name="page_hitung">Hitung Zakatmu</string>
+    <string name="page_gambar">Isi Bukti Zakatmu</string>
+    <string name="hitung">Hitung</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="bagikan_template">Denda %1\$s hari keterlambatan sebagai %2\$s: %3\$s</string>
+    <string name="tentang_aplikasi">Tentang Aplikasi</string>
+    <string name="plash">Zakat Penghasilan adalah zakat yang disalurkan dari penghasilan yang berada diatas nisab. Nisab Zakat Penghasilan adalah setara 85 gr emas.</string>
+    <string name="copyright">yokZakat adalah Aplikasi yang menyediakan dua fitur utama: pertama, pengguna dapat dengan mudah mengetahui zakat penghasilan yang harus dikeluarkan sesuai nisab. Fitur ini memungkinkan pengguna untuk mengetahui setiap bulan zakat dari penghasilan mereka.
+Fitur kedua dari aplikasi ini adalah Plan tentang waktu kapannya kita ingin mengeluarkan zakat dan menuliskan target zakat yang pengguna ingin salurkan kedepan waktu.
+\n\nAplikasi ini dibuat untuk Asesment Mobile Programming.\nCopyright © 2024 Siti Zahrah Alysa Shafiyyah. \nAll rights reserved</string>
+    <string name="kembali">Kembali</string>
+    <string name="list_kosong">Belum ada Catatan</string>
+    <string name="diklik">%1$s diklik!</string>
+    <string name="tambah_data">Mulai Catatan</string>
+    <string name="kembalikritik">Kembali</string>
+    <string name="simpankritik">Simpan</string>
+    <string name="edit_data">Ubah Rencana</string>
+    <string name="invalid">nama, tanggal, jenis zakat, target tidak boleh kosong</string>
+    <string name="lainnya">Opsi lainnya</string>
+    <string name="hapus">Hapus Catatan</string>
+    <string name="pesan_hapus">Hapus</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
+    <string name="list">Tampilan list</string>
+    <string name="grid">Tampilan grid</string>
+    <string name="reset">Reset</string>
+    <string name="gambar">Gambar %1$s</string>
+</resources>
